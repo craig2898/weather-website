@@ -37,6 +37,11 @@ header a {
     width: 250px;
 }
 
+.weatherIcon {
+    width: 100px;
+    margin-top: 16px;
+}
+
 .main-content {
     flex-grow: 1;
 }

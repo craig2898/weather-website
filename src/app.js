@@ -52,11 +52,17 @@ app.get('/weather', (req, res) => {
                 if (error)
                     return res.send({ error })
                 if (forecastData){
-                    const weatherForecast = forecastData.current.weather_descriptions[0] + '. It is currently ' + forecastData.current.temperature + ' degrees out. It feels like ' + forecastData.current.feelslike + ' degrees.'
+                    let weatherForecast = 'It is currently ' + forecastData.current.temperature+ ' degrees'
+                        weatherForecast += ' and feels like ' + forecastData.current.feelslike + '.'
+                        if(forecastData.current.cloudcover > 0)
+                            weatherForecast += ' There is ' + forecastData.current.cloudcover + '% cloud cover'
+
                     res.send({
                         location: location,
                         forecast: weatherForecast,
-                        address: req.query.address
+                        address: req.query.address,
+                        weatherIcon: forecastData.current.weather_icons[0],
+                        weatherDescription: forecastData.current.weather_descriptions[0]
                     })
                 }
             })
